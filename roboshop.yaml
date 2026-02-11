@@ -11,6 +11,12 @@
     image_id: ami-0220d79f3f480ecf5
     domain_name: happielearning.com
   tasks:
+  - name: install botocore
+    ansible.builtin.package:
+      name: "botocore"
+  - name: install boto3
+    ansible.builtin.package:
+      name: "boto3"
   - name: create ec2 instance
     amazon.aws.ec2_instance:
       instance_type: "{{ instance_type}}"
