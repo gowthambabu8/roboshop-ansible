@@ -13,12 +13,12 @@
     domain_name: happielearning.com
     region: "us-east-1"
   tasks:
-  - name: install botocore
-    ansible.builtin.pip:
-      name: "botocore"
-  - name: install boto3
-    ansible.builtin.pip:
-      name: "boto3"
+  # - name: install botocore
+  #   ansible.builtin.pip:
+  #     name: "botocore"
+  # - name: install boto3
+  #   ansible.builtin.pip:
+  #     name: "boto3"
   - name: create ec2 instance
     amazon.aws.ec2_instance:
       instance_type: "{{ instance_type}}"
