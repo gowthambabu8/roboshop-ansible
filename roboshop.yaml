@@ -20,5 +20,5 @@
         Project: "roboshop"
         Environment: "{{ env }}"
         Name: "{{ item }}-{{ env }}"
-      loops: "{{ instances }}"
+      loop: {{ instances }}
       register: instances_output
