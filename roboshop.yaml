@@ -1,4 +1,4 @@
-- name: create ec2 instances
+- name: create ec2 and route 53 records
   hosts: all
   connection: local
   vars:
@@ -20,5 +20,5 @@
         Project: "roboshop"
         Environment: "{{ env }}"
         Name: "{{ item }}-{{ env }}"
-      loop: "{{ instances }}"
-      register: instances_output
+    loop: "{{ instances }}"
+    register: instances_output
