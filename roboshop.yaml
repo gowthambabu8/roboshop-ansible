@@ -1,7 +1,6 @@
 - name: create ec2 and route 53 records
   hosts: all
   connection: local
-  become: yes
   vars:
     instances:
     - mongo
