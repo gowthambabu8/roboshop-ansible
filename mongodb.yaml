@@ -1,3 +1,4 @@
+# ansible-playbook  -i inventory.ini mongodb.yaml
 - name: mongodb configuration
   hosts: mongodb
   become: yes
