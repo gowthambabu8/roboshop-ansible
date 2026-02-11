@@ -18,6 +18,7 @@
     ansible.builtin.unarchive:
       src: "/tmp/catalogue.zip"
       dest: "/app"
+      remote_src: true
   - name: install npm
     ansible.builtin.dnf:
       name: "npm"
