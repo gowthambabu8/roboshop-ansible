@@ -12,8 +12,8 @@
   tasks:
   - name: create ec2 instance
     amazon.aws.ec2_instance:
-      instance_type: {{ instance_type}}
-      image_id: {{ image_id }}
+      instance_type: "{{ instance_type}}"
+      image_id: "{{ image_id }}"
       security_group: 
       name: "{{ item }}-{{ env }}"
       tags:
