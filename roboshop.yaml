@@ -11,6 +11,7 @@
     sg_id: sg-038655dad535c0654
     image_id: ami-0220d79f3f480ecf5
     domain_name: happielearning.com
+    region: "us-east-1"
   tasks:
   - name: install botocore
     ansible.builtin.pip:
@@ -24,6 +25,7 @@
       image_id: "{{ image_id }}"
       security_group: "{{ sg_id }}"
       name: "{{ item }}-{{ env }}"
+      region: "{{ region }}"
       tags:
         Project: "roboshop"
         Environment: "{{ env }}"
