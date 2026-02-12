@@ -20,6 +20,7 @@
       security_group: "{{ sg_id }}"
       name: "{{ item }}-{{ env }}"
       region: "{{ region }}"
+      wait: false
       tags:
         Project: "roboshop"
         Environment: "{{ env }}"
@@ -35,7 +36,8 @@
       type: A
       ttl: 1
       value: "{{ item.instances[0].private_ip_address }}"
-      wait: true
+      wait: false
+      overwrite: true
     loop: "{{ instances_output.results }}"
   
   - name: create route 53 records for frontend services
@@ -46,6 +48,7 @@
       type: A
       ttl: 1
       value: "{{ item.instances[0].public_ip_address }}"
-      wait: true
+      wait: false
+      overwrite: true
     loop: "{{ instances_output.results }}"
     when: item.item == "frontend"
