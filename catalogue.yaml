@@ -24,14 +24,13 @@
   
   - name: unzip catalogue
     ansible.builtin.unarchive:
-      src: "/tmp/catalogue.zip"
-      dest: "/app"
+      src: /tmp/catalogue.zip
+      dest: /app
       remote_src: true
   
   - name: install npm dependencies
     community.general.npm:
-      path: "/app"
-      state: present
+      path: /app
 
   - name: copy catalogue.service file
     ansible.builtin.copy:
