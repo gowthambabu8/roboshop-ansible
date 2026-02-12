@@ -28,6 +28,11 @@
       dest: /app
       remote_src: true
   
+  - name: install npm package
+    ansible.builtin.package:
+      name: "npm"
+      state: present
+      
   - name: install npm dependencies
     community.general.npm:
       path: /app
