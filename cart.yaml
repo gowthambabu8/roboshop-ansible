@@ -1,5 +1,6 @@
 - name: configure cart
   hosts: cart
+  become: true
   tasks:
   - name: Enable nodejs 20 version
     ansible.builtin.command: dnf module enable nodejs:20 -y
