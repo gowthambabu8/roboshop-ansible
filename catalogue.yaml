@@ -60,8 +60,9 @@
     ansible.builtin.debug:
       msg: "{{ catalogue_output }}"
   
-  
-
+  - name: load product data
+    ansible.builtin.shell: mongosh --host "{{ MONGODB_HOST }}" </app/db/master-data.js
+    when: catalogue_output.stdout | int < 0
 
   # - name: reload catalogue services
   #   ansible.builtin.systemd:
