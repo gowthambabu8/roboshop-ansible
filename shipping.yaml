@@ -68,6 +68,11 @@
     ansible.builtin.systemd_service:
       daemon_reload: true
 
+  - name: install dependencies
+    ansible.builtin.pip:
+      name: PyMySql
+      executable: pip3.9
+
   - name: load mysql data
     community.mysql.mysql_db:
       state: import
