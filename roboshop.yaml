@@ -27,6 +27,7 @@
         Name: "{{ item }}-{{ env }}"
     loop: "{{ instances }}"
     register: instances_output
+    when: action == "create"
   
   - name: create route 53 records for backend services
     amazon.aws.route53:
@@ -39,26 +40,28 @@
       wait: false
       overwrite: true
     loop: "{{ instances_output.results }}"
-  
+    when: action == "create"
   - name: create route 53 records for frontend services
     amazon.aws.route53:
       state: present
       zone: "{{ domain_name }}"
-      record: "{{ domain_name }}"
+      record: "roboshop-{{ env }}.{{ domain_name }}"
       type: A
       ttl: 1
       value: "{{ item.instances[0].public_ip_address }}"
       wait: false
       overwrite: true
     loop: "{{ instances_output.results }}"
-    when: item.item == "frontend"
+    when: 
+    - item.item == "frontend"
+    - action == "create"
 
   ### DESTROY ###
   - name: delete r53 records for frontend
     amazon.aws.route53:
       state: absent
       zone: "{{ domain_name }}"
-      record: "roboshop-{{ env }}.{{ domain_name }}" # roboshop-dev.daws88s.online
+      record: "roboshop-{{ env }}.{{ domain_name }}"
       type: A
       ttl: 1
     loop: "{{ instances }}"
@@ -70,7 +73,7 @@
     amazon.aws.route53:
       state: absent
       zone: "{{ domain_name }}"
-      record: "{{ item }}-{{ env }}.{{ domain_name }}" # roboshop-dev.daws88s.online
+      record: "{{ item }}-{{ env }}.{{ domain_name }}" 
       type: A
       ttl: 1
     loop: "{{ instances }}"
