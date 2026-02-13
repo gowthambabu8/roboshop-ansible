@@ -4,6 +4,7 @@
   tasks:
   - name: Enable nodejs 20 version
     ansible.builtin.command: dnf module enable nodejs:20 -y
+  
   - name: create system user roboshop
     ansible.builtin.user:
      name: "roboshop"
